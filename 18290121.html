@@ -1,0 +1,56 @@
+<html>
+   <head>
+      <link rel="stylesheet" href="18290121.css">
+   </head>
+  <body>
+    <canvas id="glcanvas" width="512" height="512"></canvas>
+
+    <div></div>
+    <hr>
+    <div id="deneme"><button id="DirectionButton" style="margin:20 0 20 0;">Change Rotation Direction</button></div>
+    
+    <div class = "rgb">
+      R <input id="rslide" type="range"
+      min="0" max="255" step="1" value="0" />
+      <p id="p1"></p> </div>
+      <div class = "rgb">
+         G <input id="gslide" type="range"s
+         min="0" max="255" step="1" value="0" />
+         <p id="p2"></p> </div>
+         <div class = "rgb">
+            B <input id="bslide" type="range"
+            min="0" max="255" step="1" value="0" />
+            <p id="p3"></p> </div>
+        
+   
+  </body>
+
+  <script id="vertex-shader" type="x-shader/x-vertex">
+    attribute vec4 vPosition;
+    uniform float theta;
+    uniform vec2 uScale;
+    uniform float uTranslationx;
+    uniform float uTranslationy;
+
+    void main(){
+      gl_Position.x = (cos(theta) * vPosition.x - sin(theta) * vPosition.y)*uScale.x + uTranslationx ;
+      gl_Position.y = (sin(theta) * vPosition.x + cos(theta) * vPosition.y)*uScale.y + uTranslationy ;
+      gl_Position.z = 0.0;
+      gl_Position.w = 1.0;
+    }
+  </script>
+
+  <script id="fragment-shader" type="x-shader/x-fragment">
+    precision mediump float;
+    uniform vec3 fragColor;
+    void main() {
+       gl_FragColor = vec4(fragColor, 1.0 );
+    }
+  </script>
+
+  <script src="initShaders.js"></script>
+  <script src="MV.js"></script>
+  <script src="webgl-utils.js"></script>
+  <script src="18290121.js"></script>
+  
+</html>
